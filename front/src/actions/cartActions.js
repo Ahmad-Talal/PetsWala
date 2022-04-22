@@ -7,7 +7,7 @@ import {
 } from '../constants/cartConstants';
 
 export const addToCart = (id,qty) => async (dispatch, getState ) => {
-    const { data } = await axios.get(`http://127.0.0.1:8000/api/products/${id}`)
+    const { data } = await axios.get(`http://ec2-18-116-28-112.us-east-2.compute.amazonaws.com/api/products/${id}`)
     //console.log("aagaya idher bhii",id,qty,data._id,data.name,data.price)
     
     dispatch({
@@ -26,7 +26,7 @@ export const addToCart = (id,qty) => async (dispatch, getState ) => {
 }        
 
 export const removeFromCart = (id) => async (dispatch, getState ) => {
-    const { data } = await axios.get(`http://127.0.0.1:8000/api/products/${id}`)
+    const { data } = await axios.get(`http://ec2-18-116-28-112.us-east-2.compute.amazonaws.com/api/products/${id}`)
     
     
     dispatch({

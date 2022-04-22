@@ -41,7 +41,7 @@ export const placedOrder =(order) => async (dispatch,getState)=>{
     }
 
     const {data} =await axios.post(
-        'http://127.0.0.1:8000/api/orders/add/',
+        'http://ec2-18-116-28-112.us-east-2.compute.amazonaws.com/api/orders/add/',
         order,
         configuration
         )
@@ -88,7 +88,7 @@ export const getOrderDetails =(id) => async (dispatch,getState)=>{
     }
 
     const {data} =await axios.get(
-        `http://127.0.0.1:8000/api/orders/${id}/`,
+        `http://ec2-18-116-28-112.us-east-2.compute.amazonaws.com/api/orders/${id}/`,
         configuration
         )
 
@@ -129,7 +129,7 @@ const configuration = {
 }
 // console.log(configuration)
 const {data} =await axios.put(
-        `http://127.0.0.1:8000/api/orders/${id}/pay/`,{},
+        `http://ec2-18-116-28-112.us-east-2.compute.amazonaws.com/api/orders/${id}/pay/`,{},
         configuration
         )
 
@@ -168,7 +168,7 @@ const configuration = {
       }
 }
 const {data} =await axios.get(
-        `http://127.0.0.1:8000/api/orders/all/`,
+        `http://ec2-18-116-28-112.us-east-2.compute.amazonaws.com/api/orders/all/`,
         configuration
         )
 

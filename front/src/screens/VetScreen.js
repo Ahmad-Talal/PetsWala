@@ -35,7 +35,7 @@ const VetScreen = ({history}) =>{
                     }
                 }
             
-                    const {data} =await axios.get('http://127.0.0.1:8000/api/vet/',
+                    const {data} =await axios.get('http://ec2-18-116-28-112.us-east-2.compute.amazonaws.com/api/vet/',
                         configuration
                     )
                    

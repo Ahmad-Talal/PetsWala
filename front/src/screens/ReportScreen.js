@@ -45,7 +45,7 @@ const ReportScreen = ({match,history}) =>{
                         }
                     }                
                     const {data} =await axios.post(
-                        `http://127.0.0.1:8000/api/report/create/${id}/`,
+                        `http://ec2-18-116-28-112.us-east-2.compute.amazonaws.com/api/report/create/${id}/`,
                         {'phonenumber':phoneNumber,'location': location, 'details':details},
                         configuration
                         )

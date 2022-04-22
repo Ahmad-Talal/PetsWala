@@ -19,7 +19,7 @@ export const listProducts=()=>async (dispatch)=>{
 
     try{
     dispatch({type:PRODUCT_LIST_REQUEST})
-    const {data} =await axios.get('http://127.0.0.1:8000/api/products/')
+    const {data} =await axios.get('http://ec2-18-116-28-112.us-east-2.compute.amazonaws.com/api/products/')
     dispatch({type:PRODUCT_LIST_SUCCESS,
               payload:data})
         }
@@ -37,7 +37,7 @@ export const listProducts=()=>async (dispatch)=>{
 export const DetailedProduct=(id)=>async (dispatch)=>{
     try{
     dispatch({type:PRODUCT_DETAILS_REQUEST})
-    const {data} =await axios.get(`http://127.0.0.1:8000/api/products/${id}`)
+    const {data} =await axios.get(`http://ec2-18-116-28-112.us-east-2.compute.amazonaws.com/api/products/${id}`)
     dispatch({type:PRODUCT_DETAILS_SUCCESS,
               payload:data})
         }
@@ -70,7 +70,7 @@ export const deleteProduct=(id)=>async (dispatch,getState)=>{
     }
 
     const {data} =await axios.delete(
-        `http://127.0.0.1:8000/api/products/delete/${id}`,
+        `http://ec2-18-116-28-112.us-east-2.compute.amazonaws.com/api/products/delete/${id}`,
         configuration
     )
     dispatch(

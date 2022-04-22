@@ -1,6 +1,6 @@
 {
   "name": "front",
-  "proxy": "http://127.0.0.1:8000",
+  "proxy": "http://ec2-18-116-28-112.us-east-2.compute.amazonaws.com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

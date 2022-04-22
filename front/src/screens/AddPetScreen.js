@@ -76,7 +76,7 @@ const AddPetScreen=({history})=>{
         
 
         const {data} = await axios.put(
-            `http://127.0.0.1:8000/api/products/image/${letter}/`,
+            `http://ec2-18-116-28-112.us-east-2.compute.amazonaws.com/api/products/image/${letter}/`,
             formData,
             config
         )
@@ -101,7 +101,7 @@ const AddPetScreen=({history})=>{
             }
         
             const {data} =await axios.post(
-                `http://127.0.0.1:8000/api/products/create/`,
+                `http://ec2-18-116-28-112.us-east-2.compute.amazonaws.com/api/products/create/`,
                 {"name":name,"price":price,"description":description,"countInStock":countInStock},
                 configuration
             )

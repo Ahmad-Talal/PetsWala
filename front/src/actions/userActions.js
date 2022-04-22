@@ -55,7 +55,7 @@ export const loginUser =(email,password) => async (dispatch)=>{
     }
 
     const {data} =await axios.post(
-        'http://127.0.0.1:8000/api/users/login/',
+        'http://ec2-18-116-28-112.us-east-2.compute.amazonaws.com/api/users/login/',
         {'username': email, 'password':password},
         configuration
         )
@@ -111,7 +111,7 @@ export const registerUser =(name,email,password) => async (dispatch)=>{
     }
 
     const {data} =await axios.post(
-        'http://127.0.0.1:8000/api/users/register/',
+        'http://ec2-18-116-28-112.us-east-2.compute.amazonaws.com/api/users/register/',
         {'name':name,'email': email, 'password':password},
         configuration
         )
@@ -158,7 +158,7 @@ export const detailedUser =() => async (dispatch,getState)=>{
     }
 
     const {data} =await axios.get(
-        'http://127.0.0.1:8000/api/users/profile/',
+        'http://ec2-18-116-28-112.us-east-2.compute.amazonaws.com/api/users/profile/',
         configuration
         )
 
@@ -199,7 +199,7 @@ export const updatedUser =(name,email,password) => async (dispatch,getState)=>{
     }
 
     const {data} =await axios.put(
-        'http://127.0.0.1:8000/api/users/profile/update/',
+        'http://ec2-18-116-28-112.us-east-2.compute.amazonaws.com/api/users/profile/update/',
         {'name':name,'email': email, 'password':password},
         configuration
         )
@@ -244,7 +244,7 @@ export const listUser =() => async (dispatch,getState)=>{
     }
 
     const {data} =await axios.get(
-        'http://127.0.0.1:8000/api/users/',
+        'http://ec2-18-116-28-112.us-east-2.compute.amazonaws.com/api/users/',
         configuration
         )
 
@@ -282,7 +282,7 @@ export const userDeleted =(id) => async (dispatch,getState)=>{
     }
 
     const {data} =await axios.delete(
-        `http://127.0.0.1:8000/api/users/delete/${id}/`,
+        `http://ec2-18-116-28-112.us-east-2.compute.amazonaws.com/api/users/delete/${id}/`,
         configuration
         )
 
@@ -320,7 +320,7 @@ export const getUser =(id) => async (dispatch,getState)=>{
     }
 
     const {data} =await axios.get(
-        `http://127.0.0.1:8000/api/users/${id}/`,
+        `http://ec2-18-116-28-112.us-east-2.compute.amazonaws.com/api/users/${id}/`,
         configuration
         )
 
@@ -358,7 +358,7 @@ export const modifyUser =(id,name,email,admin) => async (dispatch,getState)=>{
     }
 
     const {data} =await axios.put(
-        `http://127.0.0.1:8000/api/users/update/${id}/`,
+        `http://ec2-18-116-28-112.us-east-2.compute.amazonaws.com/api/users/update/${id}/`,
         {'name':name,'email': email, 'is_Admin':admin},
         configuration
         )

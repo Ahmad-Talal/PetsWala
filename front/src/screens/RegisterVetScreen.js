@@ -78,7 +78,7 @@ const RegisterVetScreen = ({location,history}) =>{
             try{
               console.log("lat he ye  ",lat)
                 const res = await axios.post(
-                    'http://127.0.0.1:8000/api/vet/create/',
+                    'http://ec2-18-116-28-112.us-east-2.compute.amazonaws.com/api/vet/create/',
                     {"title":data.title,"fee":data.fee,"qualification":data.qualification,"experience":data.experience,"latitude":lat,"longitude":lng},
                     configuration
                 )
@@ -94,7 +94,7 @@ const RegisterVetScreen = ({location,history}) =>{
                   }
               }
                 const result = await axios.post(
-                  'http://127.0.0.1:8000/api/vet/pic/',
+                  'http://ec2-18-116-28-112.us-east-2.compute.amazonaws.com/api/vet/pic/',
                   formData,
                   config
               )

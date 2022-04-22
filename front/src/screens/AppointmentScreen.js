@@ -45,7 +45,7 @@ const AppointmentScreen = ({match,history}) =>{
                         }
                     }                
                     const {data} =await axios.post(
-                        `http://127.0.0.1:8000/api/appointment/create/${id}/`,
+                        `http://ec2-18-116-28-112.us-east-2.compute.amazonaws.com/api/appointment/create/${id}/`,
                         {'phonenumber':phoneNumber,'date': date, 'details':details},
                         configuration
                         )
