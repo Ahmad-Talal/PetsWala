@@ -1,0 +1,149 @@
+from django.db import models
+from django.contrib.auth.models import User
+# Create your models here.
+
+class Product(models.Model):
+    user=models.ForeignKey(User, on_delete=models.SET_NULL,null=True)
+    name=models.CharField(max_length=200,null=True,blank=True)
+    rating=models.IntegerField(default=0,null=True,blank=True)
+    image=models.ImageField(null=True,blank=True,default='/def.jpg')
+    numReviews = models.IntegerField(default=0,null=True,blank=True)
+    description=models.TextField(null=True,blank=True)
+
+    price=models.DecimalField(max_digits=7,decimal_places=2,null=True,blank=True)
+
+    countInStock=models.IntegerField(default=0,null=True,blank=True)
+    createdAt=models.DateTimeField(auto_now_add=True)
+    _id=models.AutoField(primary_key=True,editable=False)
+
+
+    def __str__(self):
+        return self.name
+
+class Review(models.Model):
+    product=models.ForeignKey(Product, on_delete=models.SET_NULL,null=True)
+    user=models.ForeignKey(User, on_delete=models.SET_NULL,null=True)
+    name=models.CharField(max_length=200,null=True,blank=True)
+
+    rating=models.IntegerField(default=0,null=True,blank=True)
+    comment=models.TextField(null=True,blank=True)
+    _id=models.AutoField(primary_key=True,editable=False)
+
+    def __str__(self):
+        return str(self.rating)
+
+class Order(models.Model):
+    
+    user=models.ForeignKey(User, on_delete=models.SET_NULL,null=True)
+    paymentMethod=models.CharField(max_length=200,null=True,blank=True)
+    taxPrice=models.DecimalField(max_digits=7,decimal_places=2,null=True,blank=True)
+    shippingPrice=models.DecimalField(max_digits=7,decimal_places=2,null=True,blank=True)
+    totalPrice=models.DecimalField(max_digits=7,decimal_places=2,null=True,blank=True)
+    
+    isPaid=models.BooleanField(default=False)
+    paidAt=models.DateTimeField(auto_now_add=True,null=True,blank=True)
+    isDelivered=models.BooleanField(default=False)
+    deliveredAt=models.DateTimeField(auto_now_add=True,null=True,blank=True)
+    createdAt= createdAt=models.DateTimeField(auto_now_add=True)
+    _id=models.AutoField(primary_key=True,editable=False)
+    
+    def __str__(self):
+        return str(self.createdAt)
+
+class OrderItem(models.Model):
+    product=models.ForeignKey(Product, on_delete=models.SET_NULL,null=True)
+    order= models.ForeignKey(Order, on_delete=models.SET_NULL,null=True)
+    
+    name=models.CharField(max_length=200,null=True,blank=True)
+    qty=models.IntegerField(default=0,null=True,blank=True)
+    price=models.DecimalField(max_digits=7,decimal_places=2,null=True,blank=True)
+    image=models.CharField(max_length=200,null=True,blank=True)
+    _id=models.AutoField(primary_key=True,editable=False)   
+    
+    def __str__(self):
+        return self.name
+class ShippingAddress(models.Model):
+    order=models.OneToOneField(Order, on_delete=models.CASCADE,null=True,blank=True)
+
+    address=  models.CharField(max_length=200,null=True,blank=True)
+    city= models.CharField(max_length=200,null=True,blank=True)
+    postalCode=models.CharField(max_length=200,null=True,blank=True)
+    country=models.CharField(max_length=200,null=True,blank=True)
+
+    shippingPrice=  models.DecimalField(max_digits=7,decimal_places=2,null=True,blank=True) 
+
+    _id=models.AutoField(primary_key=True,editable=False)
+
+    def __str__(self):
+        return self.address
+
+class Seller(models.Model):
+    User = models.OneToOneField(User, on_delete=models.CASCADE)
+    contact = models.CharField(max_length=132)
+    NIC = models.CharField(max_length=132)
+    company_name = models.CharField(max_length=132)
+    coverImage = models.ImageField()
+    Image = models.ImageField(null = True)
+    address = models.TextField(null=True)
+    summary = models.TextField(null=True)
+    rating = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True)
+
+    def __str__(self):
+        return str(self.User.username)
+
+class Rescue(models.Model):
+    User = models.OneToOneField(User, on_delete=models.CASCADE,null=True)
+    title = models.CharField(max_length=200,null=True,blank=True)
+    location = models.CharField(max_length=200,null=True,blank=True)
+    latitude = models.DecimalField(max_digits=27,decimal_places=20,null=True,blank=True)
+    longitude = models.DecimalField(max_digits=27,decimal_places=20,null=True,blank=True)
+    bacground = models.TextField(null=True,blank=True)
+    image = models.ImageField(null=True,blank=True,default='/def.jpg')
+    rating = models.DecimalField(max_digits=7,decimal_places=2,null=True,blank=True)
+    _id=models.AutoField(primary_key=True,editable=False)
+    description = models.TextField(null=True,blank=True)
+    _id=models.AutoField(primary_key=True,editable=False)
+
+    def __str__(self):
+        return self.description
+
+class Report(models.Model):
+    user=models.ForeignKey(User, on_delete=models.SET_NULL,null=True)
+    phonenumber = models.CharField(max_length=200,null=True,blank=True)
+    location = models.CharField(max_length=200,null=True,blank=True)
+    assign = models.IntegerField(default=0,null=True,blank=True)
+    details = models.TextField(null=True,blank=True)
+    _id=models.AutoField(primary_key=True,editable=False)
+
+    def __str__(self):
+        return self.location
+
+
+class Vet(models.Model):
+    User = models.OneToOneField(User, on_delete=models.CASCADE,null=True)
+    title = models.CharField(max_length=200,null=True,blank=True)
+    fee = models.IntegerField(default=0,null=True,blank=True)
+    location = models.CharField(max_length=200,null=True,blank=True)
+    rating = models.DecimalField(max_digits=7,decimal_places=2,null=True,blank=True)
+    latitude = models.DecimalField(max_digits=27,decimal_places=20,null=True,blank=True)
+    longitude = models.DecimalField(max_digits=27,decimal_places=20,null=True,blank=True)
+    qualification = models.TextField(null=True,blank=True)
+    image = models.ImageField(null=True,blank=True,default='/def.jpg')
+    experience = models.DecimalField(max_digits=7,decimal_places=2,null=True,blank=True)
+    _id=models.AutoField(primary_key=True,editable=False)
+
+    def __str__(self):
+        return str(self.User.username)
+
+class Appointment(models.Model):
+    user=models.ForeignKey(User, on_delete=models.SET_NULL,null=True)
+    status =models.BooleanField(default=False)
+    phonenumber = models.CharField(max_length=200,null=True,blank=True)
+    name=models.CharField(max_length=200,null=True,blank=True)
+    assign = models.IntegerField(default=0,null=True,blank=True)
+    date = models.CharField(max_length=200,null=True,blank=True)
+    _id=models.AutoField(primary_key=True,editable=False)
+
+    def __str__(self):
+        return self.date
+
